@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matteo - 1 Aninho Safari 🦁</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(135deg, #87CEEB 0%, #F4A460 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 100%;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .clouds {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .cloud {
+            position: absolute;
+            background: white;
+            border-radius: 100px;
+            opacity: 0.8;
+            animation: float 20s infinite linear;
+        }
+
+        .cloud:before, .cloud:after {
+            content: '';
+            position: absolute;
+            background: white;
+            border-radius: 100px;
+        }
+
+        .cloud1 {
+            width: 80px;
+            height: 30px;
+            top: 30px;
+            left: -100px;
+        }
+
+        .cloud1:before {
+            width: 40px;
+            height: 40px;
+            top: -20px;
+            left: 10px;
+        }
+
+        .cloud1:after {
+            width: 50px;
+            height: 35px;
+            top: -15px;
+            right: 10px;
+        }
+
+        .cloud2 {
+            width: 100px;
+            height: 35px;
+            top: 80px;
+            left: -150px;
+            animation-delay: 5s;
+        }
+
+        .cloud2:before {
+            width: 50px;
+            height: 50px;
+            top: -25px;
+            left: 15px;
+        }
+
+        .cloud2:after {
+            width: 60px;
+            height: 40px;
+            top: -20px;
+            right: 15px;
+        }
+
+        @keyframes float {
+            from { transform: translateX(0); }
+            to { transform: translateX(calc(100vw + 150px)); }
+        }
+
+        .header {
+            position: relative;
+            z-index: 2;
+            margin-bottom: 30px;
+            animation: slideDown 1s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .title {
+            font-size: 2.5em;
+            color: #2E7D32;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+            margin-bottom: 10px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .subtitle {
+            font-size: 1.8em;
+            color: #FF6B35;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .animals {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 30px 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .animal {
+            font-size: 4em;
+            animation: jump 1.5s infinite;
+            margin: 10px;
+        }
+
+        .animal:nth-child(1) { animation-delay: 0s; }
+        .animal:nth-child(2) { animation-delay: 0.3s; }
+        .animal:nth-child(3) { animation-delay: 0.6s; }
+        .animal:nth-child(4) { animation-delay: 0.9s; }
+
+        @keyframes jump {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-20px) scale(1.1); }
+        }
+
+        .card {
+            background: white;
+            border-radius: 30px;
+            padding: 30px;
+            margin: 20px auto;
+            max-width: 400px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 2;
+            animation: fadeIn 1s ease-out 0.5s both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .info {
+            margin: 20px 0;
+            font-size: 1.2em;
+            color: #333;
+            line-height: 1.8;
+        }
+
+        .info strong {
+            color: #FF6B35;
+            font-size: 1.3em;
+        }
+
+        .balloons {
+            position: fixed;
+            bottom: -100px;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .balloon {
+            width: 50px;
+            height: 70px;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: floatUp 4s infinite ease-in-out;
+        }
+
+        .balloon:nth-child(1) {
+            background: #FF6B6B;
+            animation-delay: 0s;
+        }
+
+        .balloon:nth-child(2) {
+            background: #4ECDC4;
+            animation-delay: 1s;
+        }
+
+        .balloon:nth-child(3) {
+            background: #FFE66D;
+            animation-delay: 2s;
+        }
+
+        .balloon:nth-child(4) {
+            background: #95E1D3;
+            animation-delay: 3s;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-120vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .confirm-btn {
+            background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            font-size: 1.5em;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(255, 107, 53, 0.4);
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 5px 20px rgba(255, 107, 53, 0.4);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 8px 25px rgba(255, 107, 53, 0.6);
+            }
+        }
+
+        .confirm-btn:active {
+            transform: scale(0.95);
+        }
+
+        .confirm-message {
+            display: none;
+            background: #4CAF50;
+            color: white;
+            padding: 20px;
+            border-radius: 20px;
+            margin-top: 20px;
+            font-size: 1.3em;
+            animation: slideDown 0.5s ease-out;
+        }
+
+        .error-message {
+            display: none;
+            background: #FF5252;
+            color: white;
+            padding: 15px;
+            border-radius: 15px;
+            margin-top: 15px;
+            font-size: 1.1em;
+            animation: shake 0.5s ease-out;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        .name-input {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.2em;
+            border: 3px solid #FF6B35;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .name-input:focus {
+            outline: none;
+            border-color: #2E7D32;
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(46, 125, 50, 0.3);
+        }
+
+        .name-input::placeholder {
+            color: #999;
+        }
+
+        .form-container {
+            animation: fadeIn 1s ease-out 0.8s both;
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .star {
+            position: absolute;
+            font-size: 2em;
+            animation: twinkle 1.5s infinite;
+            display: none;
+        }
+
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0) rotate(0deg);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1) rotate(180deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="clouds">
+        <div class="cloud cloud1"></div>
+        <div class="cloud cloud2"></div>
+    </div>
+
+    <div class="balloons">
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+    </div>
+
+    <div class="stars" id="stars"></div>
+
+    <div class="container">
+        <div class="header">
+            <h1 class="title">🎉 VOCÊ ESTÁ CONVIDADO! 🎉</h1>
+        </div>
+
+        <div class="animals">
+            <div class="animal">🦁</div>
+            <div class="animal">🐘</div>
+            <div class="animal">🦒</div>
+            <div class="animal">🦓</div>
+        </div>
+
+        <div class="card">
+            <h2 class="subtitle">Matteo está fazendo</h2>
+            <h1 style="font-size: 3em; color: #FF6B35; margin: 20px 0;">1 ANINHO!</h1>
+            
+            <div class="info">
+                <p>🎈 <strong>Tema:</strong> Safari Adventure</p>
+                <p>📅 <strong>Data:</strong> [Data da Festa]</p>
+                <p>⏰ <strong>Horário:</strong> [Horário]</p>
+                <p>📍 <strong>Local:</strong> [Endereço]</p>
+            </div>
+
+            <p style="font-size: 1.3em; color: #2E7D32; margin: 20px 0;">
+                Venha se aventurar conosco nesta festa selvagem! 🌴
+            </p>
+
+            <div class="form-container" id="formContainer">
+                <input 
+                    type="text" 
+                    id="nomeConvidado" 
+                    placeholder="Digite seu nome aqui 😊"
+                    class="name-input"
+                >
+                
+                <button class="confirm-btn" onclick="confirmarPresenca()">
+                    🎊 VOU À FESTA! 🎊
+                </button>
+            </div>
+
+            <div class="confirm-message" id="confirmMessage">
+                🎉 Ebaaaa! Que alegria! Te esperamos na festa do Matteo! 🦁
+            </div>
+            
+            <div class="error-message" id="errorMessage">
+                ⚠️ Por favor, digite seu nome antes de confirmar!
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // IMPORTANTE: Substitua esta URL pela URL do seu Google Apps Script
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxdvcyos0f4QCIuyboQ_7_9xEaFZArzp_ADcO07NpAO9A10cN3IVxYxFdfwz-4pD7rD/exec';
+        
+        function confirmarPresenca() {
+            const nomeInput = document.getElementById('nomeConvidado');
+            const nome = nomeInput.value.trim();
+            const errorMessage = document.getElementById('errorMessage');
+            const confirmMessage = document.getElementById('confirmMessage');
+            const formContainer = document.getElementById('formContainer');
+            
+            // Esconder mensagem de erro se estiver visível
+            errorMessage.style.display = 'none';
+            
+            // Validar se o nome foi preenchido
+            if (nome === '') {
+                errorMessage.style.display = 'block';
+                nomeInput.focus();
+                
+                // Vibração no celular (se disponível)
+                if (navigator.vibrate) {
+                    navigator.vibrate([100, 50, 100]);
+                }
+                return;
+            }
+            
+            // Enviar para o Google Sheets
+            const data = {
+                nome: nome,
+                data: new Date().toLocaleString('pt-BR'),
+                confirmado: 'Sim'
+            };
+            
+            // Desabilitar o botão enquanto envia
+            const btn = document.querySelector('.confirm-btn');
+            btn.disabled = true;
+            btn.textContent = '📤 Enviando...';
+            
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+            .then(() => {
+                // Esconder formulário e mostrar mensagem de sucesso
+                formContainer.style.display = 'none';
+                confirmMessage.style.display = 'block';
+                
+                // Criar estrelas de comemoração
+                const starsContainer = document.getElementById('stars');
+                for (let i = 0; i < 20; i++) {
+                    const star = document.createElement('div');
+                    star.className = 'star';
+                    star.textContent = '⭐';
+                    star.style.left = Math.random() * 100 + '%';
+                    star.style.top = Math.random() * 100 + '%';
+                    star.style.animationDelay = Math.random() * 1 + 's';
+                    star.style.display = 'block';
+                    starsContainer.appendChild(star);
+                    
+                    setTimeout(() => star.remove(), 3000);
+                }
+                
+                // Vibração no celular (se disponível)
+                if (navigator.vibrate) {
+                    navigator.vibrate([200, 100, 200]);
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao enviar:', error);
+                // Mesmo com erro, mostrar mensagem de sucesso (devido ao no-cors)
+                formContainer.style.display = 'none';
+                confirmMessage.style.display = 'block';
+            });
+        }
+        
+        // Permitir enviar com Enter
+        document.addEventListener('DOMContentLoaded', function() {
+            const input = document.getElementById('nomeConvidado');
+            input.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    confirmarPresenca();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
